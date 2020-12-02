@@ -1,14 +1,15 @@
 SRC := ./src
 
-TARGET =test
+TARGET = rng_gen
 
 TEST_SRC := $(wildcard $(SRC)/*.cpp)
 TEST_OBJS := $(TEST_SRC:.cpp=.o)
 
-CFLAGS := -std=c++17
-LDFLAGS := -lstdc++fs
+CFLAGS := -std=gnu++17
+LDFLAGS := -Llib -pthread
+LXXFLAGS := -lstdc++fs -lcurl -lcurlpp
 
 all: $(TARGET)
 
 $(TARGET): $(TEST_OBJS)
-	gcc $(CFLAGS) $(LDFLAGS) -o $@ $^
+	g++ $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LXXFLAGS)
